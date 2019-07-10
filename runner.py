@@ -1,5 +1,6 @@
 from calculator import pregnancy_calendar
 
-x = pregnancy_calendar.PregnancyCalendar('4/2/19')
+calc = pregnancy_calendar.PregnancyCalendar('4/2/19')
 
+print(calc.given_week_calculator(20))
 
