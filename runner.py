@@ -1,3 +1,5 @@
-import calculator.EDD_calculator
+from calculator import pregnancy_calendar
 
-x = calculator.EDD_calculator("sss")
+x = pregnancy_calendar.PregnancyCalendar('4/2/19')
+
+
