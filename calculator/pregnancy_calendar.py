@@ -27,3 +27,9 @@ class PregnancyCalendar:
         date_1 = self.lmp
         edd=date_1+timedelta(days=280-(28-cycle_lenght))
         return edd
+
+    def week_at_given_date(self, given_date):
+        days_between=datetime.strptime(given_date, "%m/%d/%y")-self.lmp
+        week=int(days_between.days/7)
+        days = days_between.days % 7
+        return week, days
