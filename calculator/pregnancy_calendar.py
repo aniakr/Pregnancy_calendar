@@ -7,13 +7,15 @@ class PregnancyCalendar:
     def __init__(self, lmp):
         self.lmp = datetime.strptime(lmp, "%m/%d/%y")
 
+    def get_now(self):
+        return datetime.now()
 
     def given_week_calculator(self,required_week):
         first_day_of_week = self.lmp + timedelta(weeks=required_week)
         return first_day_of_week
 
     def current_week(self):
-        delta = datetime.now() - self.lmp
+        delta = self.get_now() - self.lmp
         current_week = int(delta.days / 7)
         days = delta.days % 7
         return current_week, days
@@ -33,3 +35,4 @@ class PregnancyCalendar:
         week=int(days_between.days/7)
         days = days_between.days % 7
         return week, days
+

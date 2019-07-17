@@ -1,7 +1,10 @@
-from unittest import TestCase
-from calculator import pregnancy_calendar
+from unittest import TestCase, mock
 import datetime
+from Pregnancy_calendar.calculator import pregnancy_calendar
 
+def mocked_get_now():
+    dt = datetime.datetime(2019, 7, 15, 00, 00, 00)
+    return dt
 
 class TestPregnancyCalculator(TestCase):
     def __init__(self, methodName='runTest'):
@@ -28,13 +31,12 @@ class TestPregnancyCalculator(TestCase):
         result=self.calc.given_week_calculator(14)
         self.assertEqual(result,datetime.datetime.strptime('7/9/19', "%m/%d/%y"))
 
-    def test_current_week(self):
-        result = self.calc.current_week()
-        self.assertEqual(result, (14, 3))
-
     def test_week_at_given_date(self):
         result=self.calc.week_at_given_date('8/20/19')
         self.assertEqual(result,(20,0))
 
-
+    @mock.patch('Pregnancy_calendar.calculator.pregnancy_calendar.PregnancyCalendar.get_now', side_effect=mocked_get_now)
+    def test_current_week_mocked(self, mocked_obj):
+        result = self.calc.current_week()
+        self.assertEqual(result, (14, 6))
 
