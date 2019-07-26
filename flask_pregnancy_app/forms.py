@@ -1,11 +1,7 @@
-from flask_wtf import FlaskForm
+from flask_wtf import Form
 from wtforms.fields.html5 import DateField
-from wtforms import StringField
-from wtforms.validators import DataRequired
+from wtforms import SubmitField
 
-
-class LmpInputForm(FlaskForm):
-    lmp=DateField('lmp_input',format='%Y-%m-%d')
-
-class BasicInput(FlaskForm):
-    basic=StringField('basic_input',validators=[DataRequired()])
+class LmpInputForm(Form):
+    lmp=DateField('Date of the beginning of your last period', format='%Y-%m-%d')
+    submit = SubmitField("Submit")

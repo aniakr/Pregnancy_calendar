@@ -1,0 +1,16 @@
+{% extends "layout.html"%}
+{%block content%}
+    <h1>Perform the calculations!!</h1>
+    <div>
+        <form method="POST", action="">
+            {{form.hidden_tag()}}
+            <div>
+                {{form.lmp.label}}
+                {{form.lmp}}
+            </div>
+            <div>
+                {{form.submit}}
+            </div>
+        </form>
+    </div>
+{%endblock content%}
