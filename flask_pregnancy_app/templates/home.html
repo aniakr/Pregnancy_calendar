@@ -1,0 +1,9 @@
+{% extends "layout.html"%}
+{%block content%}
+    <h1>Pregnancy calendar</h1>
+        {%for item in news%}
+        <h2>{{item.title}}</h2>
+        <p>By {{item.author}} on {{item.date_posted}}</p>
+        <p>{{item.content}}</p>
+        {%endfor%}
+{%endblock content%}
