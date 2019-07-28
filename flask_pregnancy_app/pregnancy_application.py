@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request,url_for
+from flask import Flask, render_template, request,url_for, flash
+from Pregnancy_calendar.calculator.pregnancy_calendar import PregnancyCalendar
 from Pregnancy_calendar.flask_pregnancy_app.forms import LmpInputForm
 
 app=Flask(__name__)
@@ -29,7 +30,9 @@ def calendar():
     form=LmpInputForm()
     if request.method=='POST':
         if form.validate_on_submit():
-            return "Success"
+            my_pregnancy=PregnancyCalendar(form.lmp.data.strftime('%m/%d/%y'))
+            flash(f'You are in {my_pregnancy.current_week()[0]} week and {my_pregnancy.current_week()[1]} day')
+            flash(f'Your edd is {my_pregnancy.edd_calculator()}')
     return render_template("calendar.html", title='Calendar',form=form)
 
 if __name__=="__main__":
